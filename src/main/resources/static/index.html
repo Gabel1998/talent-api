@@ -109,7 +109,6 @@
 
         <div class="links">
             <a href="swagger-ui.html">Swagger UI <span data-i18n="link_swagger">— API-dokumentation</span></a>
-            <a href="talent">GET /talent <span data-i18n="link_talent">— JSON-data om mig</span></a>
             <a href="https://github.com/Gabel1998" target="_blank" rel="noopener">GitHub <span>— Gabel1998</span></a>
             <a href="https://www.linkedin.com/in/andreas-s%C3%B8gaard-gabel-758991133" target="_blank" rel="noopener">LinkedIn</a>
         </div>
@@ -132,10 +131,28 @@
 
         <div class="endpoints">
             <h2 class="section-label">API Endpoints</h2>
-            <div class="endpoint"><code>GET</code> /talent</div>
-            <div class="endpoint"><code>GET</code> /talent/{id}</div>
-            <div class="endpoint"><code>GET</code> /talent/{id}/documents</div>
-            <div class="endpoint"><code>GET</code> /talent/{id}/documents/{documentId}</div>
+            <button class="endpoints-toggle" id="endpoints-toggle">
+                <span data-i18n="endpoints_toggle">4 endpoints — tryk for at udforske</span>
+                <span class="chevron">&#9660;</span>
+            </button>
+            <div class="endpoints-panel" id="endpoints-panel">
+                <button class="endpoint-btn" data-path="talent">
+                    <code>GET</code> /talent
+                    <span class="doc-btn-arrow">&#8594;</span>
+                </button>
+                <button class="endpoint-btn" data-path="talent/{id}">
+                    <code>GET</code> /talent/{id}
+                    <span class="doc-btn-arrow">&#8594;</span>
+                </button>
+                <button class="endpoint-btn" data-path="talent/{id}/documents">
+                    <code>GET</code> /talent/{id}/documents
+                    <span class="doc-btn-arrow">&#8594;</span>
+                </button>
+                <button class="endpoint-btn" data-path="talent/{id}/documents/{documentId}">
+                    <code>GET</code> /talent/{id}/documents/{documentId}
+                    <span class="doc-btn-arrow">&#8594;</span>
+                </button>
+            </div>
         </div>
     </div>
 
