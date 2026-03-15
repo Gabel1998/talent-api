@@ -20,13 +20,13 @@ public class TalentRepository {
                     .name("Andreas Gabel")
                     .title("Datamatiker-studerende | DevOps & Backend")
                     .profileText(
-                        "4. semester datamatiker på EK med fokus på DevOps, backend-udvikling og automatisering. " +
-                        "Jeg bygger og drifter min egen cloud-native platform på andreasgabel.dk — " +
-                        "Spring Boot, Docker, GitHub Actions CI/CD/CD/CF og Nginx på en DigitalOcean droplet. " +
-                        "Fire projekter kører i produktion bag én reverse proxy med HTTPS, " +
-                        "komplet med JaCoCo, Checkstyle, SpotBugs, Trivy og frontend linting. " +
-                        "Har baggrund fra IT-operations hos Københavns Kommune, " +
-                        "hvor jeg automatiserer drift af Linux-baserede borger-PC'er.")
+                        "Min vej hertil er lidt anderledes. Jeg har navigeret skibe i søværnet, " +
+                        "studeret teologi, latin og filosofi på KU og undervist elever med autisme. " +
+                        "Den erfaring har givet mig noget de fleste IT-studerende ikke har: " +
+                        "at fungere under ansvar i situationer der ikke følger en opskrift. " +
+                        "I søværnet lærte jeg at én mand er ingen mand " +
+                        "— hos Tech Chapter kalder de det at løfte i flok. " +
+                        "Det er den samme overbevisning jeg tager med ind i DevOps.")
                     .email("andreassgabel@hotmail.com")
                     .phone("+45 60 77 66 13")
                     .city("København")
@@ -60,18 +60,19 @@ public class TalentRepository {
                             .id("d0c00001-0000-0000-0000-000000000001")
                             .name("Motivationsbrev")
                             .content(
-                                "Jeg søger praktikplads hos Tech Chapter i perioden august til slut oktober 2026. " +
-                                "Jeres specialisering i DevOps, SRE og Cloud Native er præcis den retning jeg arbejder hen imod " +
-                                "— ikke kun på studiet, men i praksis med egne projekter. " +
-                                "Jeg drifter en multi-projekt platform på en DigitalOcean droplet med Docker Compose, " +
-                                "Nginx reverse proxy, Let's Encrypt SSL og fuld CI/CD/CD/CF pipeline via GitHub Actions. " +
-                                "Fire selvstændige projekter kører i produktion bag samme infrastruktur. " +
-                                "På 4. semester er jeg i gang med Kubernetes og Terraform som del af DevOps-faget " +
-                                "— det er en direkte forlængelse af det jeg allerede laver i praksis. " +
+                                "Jeg vil bygge rigtige systemer, ikke kun beskrivelser. " +
+                                "Jeg tillader mig herved at søge praktikplads hos Tech Chapter i perioden slut august til start november 2026. " +
+                                "Jeres specialisering i DevOps, SRE og Cloud Native er præcis den retning jeg arbejder hen imod. " +
+                                "En af grundene til jeg søger praktik hos jer er at drage læring på teknologier som Kubernetes. " +
+                                "Jeg møder op med en forståelse for hvad der sker når ting kører i virkeligheden, " +
+                                "og håber at opnå endnu mere læring hos jer, så jeg kan løfte mig selv og mine systemer op på et højere niveau, " +
+                                "og kontinuerligt lærer gennem andre og gennem livet. " +
+                                "I løser virkelige problemer for virksomheder der ikke har råd til nedetid " +
+                                "— det er præcis den skala jeg vil lære at arbejde i. " +
                                 "Det der tiltrækker mig ved Tech Chapter er tilgangen: build-measure-learn, lean startup " +
                                 "og et SaaS-produkt der skal bygges ordentligt fra bunden. " +
-                                "Jeg kommer med reel driftserfaring og tager ansvar for det arbejde jeg leverer. " +
-                                "Min studiekammerat Nima Salami søger også — vi arbejder godt sammen og vil gerne i praktik sammen.")
+                                "Jeg kommer med reel driftserfaring og tager ansvar for det arbejde jeg leverer " +
+                                "både som individ, og som team.")
                             .build(),
 
                     Document.builder()
@@ -119,11 +120,12 @@ public class TalentRepository {
                             .content(
                                 "LINK: https://andreasgabel.dk/raidfines " +
                                 "REPO: https://github.com/Gabel1998/raid-fines. " +
-                                "BESKRIVELSE: WoW raid-bødesystem med OAuth2 login (Discord/GitHub). " +
+                                "BESKRIVELSE: WoW raid-bødesystem med OAuth2 login via Battle.net og GitHub. " +
                                 "Spring Boot backend, MySQL database, Vanilla JS frontend. " +
+                                "Inkluderer en custom in-game addon skrevet i Lua der automatisk tracker bøder under raids. " +
                                 "Fuld CI/CD pipeline med build, test, linting, GHCR push, Trivy scanning og SSH deploy. " +
                                 "Showroom-version kører med H2 in-memory database. " +
-                                "STACK: Java, Spring Boot, Spring Security, OAuth2, JWT, MySQL, Docker, GitHub Actions.")
+                                "STACK: Java, Spring Boot, Spring Security, OAuth2, JWT, MySQL, Lua, Docker, GitHub Actions.")
                             .build(),
 
                     Document.builder()
