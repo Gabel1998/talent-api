@@ -72,6 +72,72 @@
             margin-bottom: 2rem;
         }
 
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            font-family: 'Fira Code', ui-monospace, monospace;
+            font-size: 0.75rem;
+            padding: 2px 0.5rem;
+            background: #F3F4F6;
+            border-radius: 0.25rem;
+            color: #2563EB;
+        }
+
+        /* Documents section */
+        .documents {
+            margin-bottom: 2rem;
+        }
+
+        .documents h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6B7280;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .doc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .doc-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0.65rem 1rem;
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.5rem;
+            color: #111827;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+
+        .doc-btn:hover {
+            border-color: #2563EB;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transform: translateY(-2px);
+        }
+
+        .doc-btn-arrow {
+            color: #2563EB;
+            font-size: 0.9rem;
+        }
+
+        /* Links */
         .links {
             display: flex;
             flex-direction: column;
@@ -151,21 +217,80 @@
             font-weight: 500;
         }
 
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
             justify-content: center;
-            gap: 0.25rem;
-            margin-bottom: 2rem;
+            padding: 1rem;
         }
 
-        .tech-tag {
-            font-family: 'Fira Code', ui-monospace, monospace;
-            font-size: 0.75rem;
-            padding: 2px 0.5rem;
-            background: #F3F4F6;
-            border-radius: 0.25rem;
-            color: #2563EB;
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: #FFFFFF;
+            border-radius: 0.5rem;
+            max-width: 640px;
+            width: 100%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            animation: modalIn 0.2s ease-out;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(16px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .modal-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 0.25rem;
+            line-height: 1;
+            transition: color 0.15s;
+        }
+
+        .modal-close:hover {
+            color: #111827;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            color: #374151;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .modal-body .loading {
+            text-align: center;
+            color: #6B7280;
+            padding: 2rem 0;
         }
 
         @media (max-width: 480px) {
@@ -174,6 +299,9 @@
             }
             h1 {
                 font-size: 1.5rem;
+            }
+            .modal {
+                max-height: 90vh;
             }
         }
     </style>
@@ -198,6 +326,13 @@
             <span class="tech-tag">CI/CD</span>
         </div>
 
+        <div class="documents">
+            <h2>Dokumenter</h2>
+            <div class="doc-list" id="doc-list">
+                <div class="doc-btn" style="justify-content:center;color:#6B7280;cursor:default;">Henter dokumenter...</div>
+            </div>
+        </div>
+
         <div class="links">
             <a href="/swagger-ui.html">Swagger UI <span>— API-dokumentation</span></a>
             <a href="/talent">GET /talent <span>— JSON-data om mig</span></a>
@@ -217,5 +352,74 @@
             <div class="endpoint"><code>GET</code> /talent/{id}/documents/{documentId}</div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title"></h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById('modal-overlay');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const modalClose = document.getElementById('modal-close');
+
+        let talentId = null;
+
+        // Close modal
+        modalClose.addEventListener('click', () => overlay.classList.remove('open'));
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.classList.remove('open');
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') overlay.classList.remove('open');
+        });
+
+        // Load talent and documents
+        async function init() {
+            try {
+                const talents = await fetch('/talent').then(r => r.json());
+                if (!talents.length) return;
+
+                talentId = talents[0].id;
+                const docs = await fetch(`/talent/${talentId}/documents`).then(r => r.json());
+
+                const list = document.getElementById('doc-list');
+                list.innerHTML = '';
+
+                docs.forEach(doc => {
+                    const btn = document.createElement('button');
+                    btn.className = 'doc-btn';
+                    btn.innerHTML = `${doc.name} <span class="doc-btn-arrow">&rarr;</span>`;
+                    btn.addEventListener('click', () => openDocument(doc.id, doc.name));
+                    list.appendChild(btn);
+                });
+            } catch {
+                document.getElementById('doc-list').innerHTML =
+                    '<div class="doc-btn" style="justify-content:center;color:#6B7280;cursor:default;">Kunne ikke hente dokumenter</div>';
+            }
+        }
+
+        async function openDocument(docId, name) {
+            modalTitle.textContent = name;
+            modalBody.innerHTML = '<div class="loading">Henter...</div>';
+            overlay.classList.add('open');
+
+            try {
+                const doc = await fetch(`/talent/${talentId}/documents/${docId}`).then(r => r.json());
+                modalBody.textContent = doc.content;
+            } catch {
+                modalBody.textContent = 'Kunne ikke hente dokumentet.';
+            }
+        }
+
+        init();
+    </script>
 </body>
 </html>
