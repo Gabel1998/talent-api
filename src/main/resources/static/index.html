@@ -746,21 +746,26 @@
 
         init();
 
-        // Exit intent — triggers when mouse moves toward top of page (desktop)
-        let exitShown = false;
+        // Exit intent — show when mouse leaves top, hide when mouse returns
+        let exitDismissed = false;
         const exitBanner = document.getElementById('exit-banner');
         const exitClose = document.getElementById('exit-banner-close');
 
         document.addEventListener('mouseout', (e) => {
-            if (exitShown) return;
-            // Only trigger when mouse actually leaves the document (not moving between elements)
+            if (exitDismissed) return;
             if (e.relatedTarget === null && e.clientY <= 5) {
-                exitShown = true;
                 exitBanner.classList.add('show');
             }
         });
 
+        document.addEventListener('mouseenter', () => {
+            if (!exitDismissed) {
+                exitBanner.classList.remove('show');
+            }
+        });
+
         exitClose.addEventListener('click', () => {
+            exitDismissed = true;
             exitBanner.classList.remove('show');
         });
     </script>
