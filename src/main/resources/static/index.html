@@ -470,6 +470,69 @@
             padding: 2rem 0;
         }
 
+        /* Exit intent banner */
+        .exit-banner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #2563EB;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            z-index: 2000;
+            text-align: center;
+            animation: slideDown 0.3s ease-out;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .exit-banner.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .exit-banner p {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+        }
+
+        .exit-banner a {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: #fff;
+            color: #2563EB;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.15s;
+        }
+
+        .exit-banner a:hover {
+            background: #EEF2FF;
+        }
+
+        .exit-banner-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.3rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .exit-banner-close:hover {
+            color: #fff;
+        }
+
         @media (max-width: 480px) {
             .card { padding: 2rem 1.5rem; }
             h1 { font-size: 1.5rem; }
@@ -597,6 +660,13 @@
         </div>
     </div>
 
+    <!-- Exit intent banner -->
+    <div class="exit-banner" id="exit-banner">
+        <button class="exit-banner-close" id="exit-banner-close">&times;</button>
+        <p>Gar du allerede? Se hvad jeg har bygget!</p>
+        <a href="https://andreasgabel.dk" target="_blank" rel="noopener">Besog andreasgabel.dk &rarr;</a>
+    </div>
+
     <!-- Modal -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal">
@@ -675,6 +745,22 @@
         }
 
         init();
+
+        // Exit intent — triggers when mouse leaves viewport (desktop)
+        let exitShown = false;
+        const exitBanner = document.getElementById('exit-banner');
+        const exitClose = document.getElementById('exit-banner-close');
+
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitShown) {
+                exitShown = true;
+                exitBanner.classList.add('show');
+            }
+        });
+
+        exitClose.addEventListener('click', () => {
+            exitBanner.classList.remove('show');
+        });
     </script>
 </body>
 </html>
