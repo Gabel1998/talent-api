@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: >
     REST API til Tech Chapter praktikant-udfordring.
-    Returnerer talent-profiler og tilhorende dokumenter (CV, motivationsbrev, projektbeskrivelser).
+    Returnerer talent-profiler og tilhørende dokumenter (CV, motivationsbrev, projektbeskrivelser).
     Bygget med Spring Boot 3, Java 21, Lombok og Swagger/OpenAPI 3.
   contact:
     name: Andreas Gabel
@@ -57,7 +57,7 @@ paths:
   /talent/{id}/documents:
     get:
       summary: Hent dokumenter for en talent
-      description: Returnerer alle dokumenter (CV, motivationsbrev, projektbeskrivelser) der tilhorer den angivne talent.
+      description: Returnerer alle dokumenter (CV, motivationsbrev, projektbeskrivelser) der tilhører den angivne talent.
       operationId: getDocuments
       tags:
         - Talent
@@ -133,7 +133,7 @@ components:
         profile_text:
           type: string
           description: Kort introduktion til talentet
-          example: 4. semester datamatiker med fokus pa DevOps og backend...
+          example: 4. semester datamatiker med fokus på DevOps og backend...
         email:
           type: string
           format: email
@@ -146,7 +146,7 @@ components:
         city:
           type: string
           description: By
-          example: Kobenhavn
+          example: København
         country:
           type: string
           description: Land
@@ -162,7 +162,7 @@ components:
           format: uri
           nullable: true
           description: LinkedIn-profil URL
-          example: https://www.linkedin.com/in/andreas-sogaard-gabel-758991133
+          example: https://www.linkedin.com/in/andreas-søgaard-gabel-758991133
     Document:
       type: object
       description: Et dokument tilknyttet en talent — f.eks. CV, motivationsbrev eller projektbeskrivelse
@@ -178,4 +178,4 @@ components:
         content:
           type: string
           description: Dokumentets indhold i fuld tekst
-          example: Kaere Tech Chapter, jeg soger hermed...
+          example: Kære Tech Chapter, jeg søger hermed...

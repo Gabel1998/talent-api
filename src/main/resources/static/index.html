@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Andreas Gabel — Talent API. REST API til praktikansogning.">
+    <meta name="description" content="Andreas Gabel — Talent API. REST API til praktikansøgning.">
     <title>Andreas Gabel — Talent API</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +34,29 @@
             padding: 3rem 2.5rem;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            position: relative;
+        }
+
+        /* Language toggle */
+        .lang-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: none;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            color: #6B7280;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .lang-toggle:hover {
+            color: #2563EB;
+            border-color: #2563EB;
         }
 
         .avatar {
@@ -89,7 +112,6 @@
             color: #2563EB;
         }
 
-        /* Section headers */
         .section-label {
             font-size: 0.8rem;
             text-transform: uppercase;
@@ -99,10 +121,7 @@
             margin-bottom: 0.6rem;
         }
 
-        /* Documents — Motivationsbrev + CV */
-        .documents {
-            margin-bottom: 1.5rem;
-        }
+        .documents { margin-bottom: 1.5rem; }
 
         .doc-list {
             display: flex;
@@ -133,15 +152,9 @@
             transform: translateY(-2px);
         }
 
-        .doc-btn-arrow {
-            color: #2563EB;
-            font-size: 0.9rem;
-        }
+        .doc-btn-arrow { color: #2563EB; font-size: 0.9rem; }
 
-        /* Projects accordion */
-        .projects {
-            margin-bottom: 2rem;
-        }
+        .projects { margin-bottom: 2rem; }
 
         .projects-toggle {
             display: flex;
@@ -170,15 +183,8 @@
             border-bottom-color: transparent;
         }
 
-        .chevron {
-            color: #2563EB;
-            font-size: 0.75rem;
-            transition: transform 0.2s;
-        }
-
-        .projects-toggle.open .chevron {
-            transform: rotate(180deg);
-        }
+        .chevron { color: #2563EB; font-size: 0.75rem; transition: transform 0.2s; }
+        .projects-toggle.open .chevron { transform: rotate(180deg); }
 
         .projects-panel {
             display: none;
@@ -188,9 +194,7 @@
             overflow: hidden;
         }
 
-        .projects-panel.open {
-            display: block;
-        }
+        .projects-panel.open { display: block; }
 
         .project-item {
             display: flex;
@@ -204,80 +208,33 @@
             transition: background 0.15s;
         }
 
-        .project-item:last-child {
-            border-bottom: none;
-        }
-
-        .project-item:hover {
-            background: #F9FAFB;
-        }
+        .project-item:last-child { border-bottom: none; }
+        .project-item:hover { background: #F9FAFB; }
 
         .project-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 0.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #fff;
-            flex-shrink: 0;
-            margin-top: 2px;
+            width: 32px; height: 32px; border-radius: 0.25rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 700; color: #fff;
+            flex-shrink: 0; margin-top: 2px;
         }
 
-        .project-details {
-            flex: 1;
-            min-width: 0;
-        }
+        .project-details { flex: 1; min-width: 0; }
+        .project-name { font-weight: 600; font-size: 0.85rem; color: #111827; }
+        .project-desc { font-size: 0.78rem; color: #6B7280; line-height: 1.4; margin-top: 1px; }
 
-        .project-name {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #111827;
-        }
-
-        .project-desc {
-            font-size: 0.78rem;
-            color: #6B7280;
-            line-height: 1.4;
-            margin-top: 1px;
-        }
-
-        .project-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.2rem;
-            margin-top: 0.3rem;
-        }
-
+        .project-stack { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-top: 0.3rem; }
         .project-stack-tag {
             font-family: 'Fira Code', ui-monospace, monospace;
-            font-size: 0.65rem;
-            padding: 1px 0.35rem;
-            background: #EEF2FF;
-            border-radius: 0.2rem;
-            color: #4338CA;
+            font-size: 0.65rem; padding: 1px 0.35rem;
+            background: #EEF2FF; border-radius: 0.2rem; color: #4338CA;
         }
 
-        /* Links */
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
+        .links { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem; }
 
         .links a {
-            display: block;
-            padding: 0.7rem 1rem;
-            background: #F3F4F6;
-            border: 1px solid #E5E7EB;
-            border-radius: 0.5rem;
-            color: #111827;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
+            display: block; padding: 0.7rem 1rem;
+            background: #F3F4F6; border: 1px solid #E5E7EB; border-radius: 0.5rem;
+            color: #111827; text-decoration: none; font-size: 0.85rem; font-weight: 500;
             transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
         }
 
@@ -287,56 +244,28 @@
             transform: translateY(-2px);
         }
 
-        .links a span {
-            color: #6B7280;
-            font-size: 0.75rem;
-            font-weight: 400;
-        }
+        .links a span { color: #6B7280; font-size: 0.75rem; font-weight: 400; }
 
         .cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: #2563EB;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            font-size: 0.95rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; background: #2563EB; color: #fff;
+            text-decoration: none; border-radius: 0.5rem; font-weight: 500; font-size: 0.95rem;
             transition: background-color 0.2s, box-shadow 0.2s;
         }
 
-        .cta:hover {
-            background: #1d4ed8;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-        }
+        .cta:hover { background: #1d4ed8; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); }
 
-        /* Partner section */
         .partner {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #E5E7EB;
-            text-align: center;
+            margin-top: 2rem; padding-top: 1.5rem;
+            border-top: 1px solid #E5E7EB; text-align: center;
         }
 
-        .partner p {
-            color: #6B7280;
-            font-size: 0.85rem;
-            margin-bottom: 0.8rem;
-            line-height: 1.5;
-        }
+        .partner p { color: #6B7280; font-size: 0.85rem; margin-bottom: 0.8rem; line-height: 1.5; }
 
         .partner-card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: #F3F4F6;
-            border: 1px solid #E5E7EB;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            color: #111827;
+            display: flex; align-items: center; gap: 1rem; padding: 1rem;
+            background: #F3F4F6; border: 1px solid #E5E7EB; border-radius: 0.5rem;
+            text-decoration: none; color: #111827;
             transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
         }
 
@@ -347,77 +276,39 @@
         }
 
         .partner-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #7C3AED;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            flex-shrink: 0;
+            width: 48px; height: 48px; border-radius: 50%; background: #7C3AED;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; font-weight: 700; color: #fff; flex-shrink: 0;
         }
 
-        .partner-info {
-            text-align: left;
-        }
+        .partner-info { text-align: left; }
+        .partner-name { font-weight: 600; font-size: 0.9rem; }
+        .partner-desc { color: #6B7280; font-size: 0.78rem; }
 
-        .partner-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .partner-desc {
-            color: #6B7280;
-            font-size: 0.78rem;
-        }
-
-        /* Endpoints */
         .endpoints {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #E5E7EB;
-            text-align: left;
+            margin-top: 2rem; padding-top: 1.5rem;
+            border-top: 1px solid #E5E7EB; text-align: left;
         }
 
         .endpoint {
             font-family: 'Fira Code', ui-monospace, monospace;
-            font-size: 0.78rem;
-            color: #6B7280;
-            padding: 0.35rem 0;
+            font-size: 0.78rem; color: #6B7280; padding: 0.35rem 0;
         }
 
-        .endpoint code {
-            color: #2563EB;
-            font-weight: 500;
-        }
+        .endpoint code { color: #2563EB; font-weight: 500; }
 
-        /* Modal */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
+            display: none; position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.5); z-index: 1000;
+            align-items: center; justify-content: center; padding: 1rem;
         }
 
-        .modal-overlay.open {
-            display: flex;
-        }
+        .modal-overlay.open { display: flex; }
 
         .modal {
-            background: #FFFFFF;
-            border-radius: 0.5rem;
-            max-width: 640px;
-            width: 100%;
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
+            background: #FFFFFF; border-radius: 0.5rem;
+            max-width: 640px; width: 100%; max-height: 80vh;
+            display: flex; flex-direction: column;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
             animation: modalIn 0.2s ease-out;
         }
@@ -428,110 +319,59 @@
         }
 
         .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid #E5E7EB;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.25rem 1.5rem; border-bottom: 1px solid #E5E7EB;
         }
 
-        .modal-header h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #111827;
-        }
+        .modal-header h3 { font-size: 1.1rem; font-weight: 600; color: #111827; }
 
         .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #6B7280;
-            cursor: pointer;
-            padding: 0.25rem;
-            line-height: 1;
-            transition: color 0.15s;
+            background: none; border: none; font-size: 1.5rem; color: #6B7280;
+            cursor: pointer; padding: 0.25rem; line-height: 1; transition: color 0.15s;
         }
 
-        .modal-close:hover {
-            color: #111827;
-        }
+        .modal-close:hover { color: #111827; }
 
         .modal-body {
-            padding: 1.5rem;
-            overflow-y: auto;
-            color: #374151;
-            font-size: 0.9rem;
-            line-height: 1.7;
+            padding: 1.5rem; overflow-y: auto; color: #374151;
+            font-size: 0.9rem; line-height: 1.7;
         }
 
-        .modal-body .loading {
-            text-align: center;
-            color: #6B7280;
-            padding: 2rem 0;
-        }
+        .modal-body .loading { text-align: center; color: #6B7280; padding: 2rem 0; }
 
-        /* Exit intent banner */
         .exit-banner {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #2563EB;
-            color: #fff;
-            padding: 1rem 1.5rem;
-            z-index: 2000;
-            text-align: center;
+            display: none; position: fixed; top: 0; left: 0; right: 0;
+            background: #2563EB; color: #fff; padding: 1rem 1.5rem;
+            z-index: 2000; text-align: center;
             animation: slideDown 0.3s ease-out;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
-        .exit-banner.show {
-            display: block;
-        }
+        .exit-banner.show { display: block; }
 
         @keyframes slideDown {
             from { transform: translateY(-100%); }
             to { transform: translateY(0); }
         }
 
-        .exit-banner p {
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 0.6rem;
-        }
+        .exit-banner p { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.6rem; }
 
         .exit-banner a {
-            display: inline-block;
-            padding: 0.5rem 1.25rem;
-            background: #fff;
-            color: #2563EB;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
+            display: inline-block; padding: 0.5rem 1.25rem;
+            background: #fff; color: #2563EB; border-radius: 0.5rem;
+            text-decoration: none; font-weight: 600; font-size: 0.85rem;
             transition: background 0.15s;
         }
 
-        .exit-banner a:hover {
-            background: #EEF2FF;
-        }
+        .exit-banner a:hover { background: #EEF2FF; }
 
         .exit-banner-close {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.75rem;
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.3rem;
-            cursor: pointer;
-            line-height: 1;
+            position: absolute; top: 0.5rem; right: 0.75rem;
+            background: none; border: none; color: rgba(255, 255, 255, 0.7);
+            font-size: 1.3rem; cursor: pointer; line-height: 1;
         }
 
-        .exit-banner-close:hover {
-            color: #fff;
-        }
+        .exit-banner-close:hover { color: #fff; }
 
         @media (max-width: 480px) {
             .card { padding: 2rem 1.5rem; }
@@ -542,11 +382,13 @@
 </head>
 <body>
     <div class="card">
+        <button class="lang-toggle" id="lang-toggle">EN</button>
+
         <div class="avatar">AG</div>
         <h1>Andreas Gabel</h1>
-        <p class="title">Datamatiker-studerende | DevOps & Backend</p>
-        <p class="bio">
-            4. semester datamatiker med fokus pa DevOps og backend.
+        <p class="title" data-i18n="title">Datamatiker-studerende | DevOps & Backend</p>
+        <p class="bio" data-i18n="bio">
+            4. semester datamatiker med fokus på DevOps og backend.
             Jeg drifter en cloud-native platform med fire projekter i produktion
             — Docker, GitHub Actions CI/CD, Nginx og DigitalOcean.
         </p>
@@ -560,19 +402,17 @@
             <span class="tech-tag">CI/CD</span>
         </div>
 
-        <!-- Motivationsbrev + CV -->
         <div class="documents">
-            <h2 class="section-label">Dokumenter</h2>
+            <h2 class="section-label" data-i18n="docs_label">Dokumenter</h2>
             <div class="doc-list" id="doc-list">
-                <div class="doc-btn" style="justify-content:center;color:#6B7280;cursor:default;">Henter...</div>
+                <div class="doc-btn" style="justify-content:center;color:#6B7280;cursor:default;" data-i18n="loading">Henter...</div>
             </div>
         </div>
 
-        <!-- Projekter — kompakt accordion -->
         <div class="projects">
-            <h2 class="section-label">Projekter i produktion</h2>
+            <h2 class="section-label" data-i18n="projects_label">Projekter i produktion</h2>
             <button class="projects-toggle" id="projects-toggle">
-                4 live projekter pa andreasgabel.dk
+                <span data-i18n="projects_toggle">4 live projekter på andreasgabel.dk</span>
                 <span class="chevron">&#9660;</span>
             </button>
             <div class="projects-panel" id="projects-panel">
@@ -580,7 +420,7 @@
                     <div class="project-icon" style="background:#2563EB;">P</div>
                     <div class="project-details">
                         <div class="project-name">Portfolio-platform</div>
-                        <div class="project-desc">Multi-projekt platform med Nginx reverse proxy, CI/CD pipeline-visualisering og infrastruktur-dashboard.</div>
+                        <div class="project-desc" data-i18n="project_portfolio">Multi-projekt platform med Nginx reverse proxy, CI/CD pipeline-visualisering og infrastruktur-dashboard.</div>
                         <div class="project-stack">
                             <span class="project-stack-tag">Spring Boot</span>
                             <span class="project-stack-tag">Docker</span>
@@ -593,7 +433,7 @@
                     <div class="project-icon" style="background:#DC2626;">R</div>
                     <div class="project-details">
                         <div class="project-name">Raid Fines</div>
-                        <div class="project-desc">WoW raid-bodesystem med OAuth2 login via Discord og GitHub.</div>
+                        <div class="project-desc" data-i18n="project_raidfines">WoW raid-bødesystem med OAuth2 login via Discord og GitHub.</div>
                         <div class="project-stack">
                             <span class="project-stack-tag">OAuth2</span>
                             <span class="project-stack-tag">JWT</span>
@@ -605,7 +445,7 @@
                     <div class="project-icon" style="background:#059669;">W</div>
                     <div class="project-details">
                         <div class="project-name">Web Crawler</div>
-                        <div class="project-desc">Konfigurerbar crawler med D3.js netvaerksvisualisering og AI-indholdsanalyse.</div>
+                        <div class="project-desc" data-i18n="project_webcrawler">Konfigurerbar crawler med D3.js netværksvisualisering og AI-indholdsanalyse.</div>
                         <div class="project-stack">
                             <span class="project-stack-tag">Selenium</span>
                             <span class="project-stack-tag">D3.js</span>
@@ -617,7 +457,7 @@
                     <div class="project-icon" style="background:#D97706;">B</div>
                     <div class="project-details">
                         <div class="project-name">Beskyttelsesrum Danmark</div>
-                        <div class="project-desc">Interaktivt kort over danske beskyttelsesrum med kapacitetsrapporter.</div>
+                        <div class="project-desc" data-i18n="project_beskyttelsesrum">Interaktivt kort over danske beskyttelsesrum med kapacitetsrapporter.</div>
                         <div class="project-stack">
                             <span class="project-stack-tag">Leaflet.js</span>
                             <span class="project-stack-tag">JPA</span>
@@ -629,24 +469,24 @@
         </div>
 
         <div class="links">
-            <a href="/swagger-ui.html">Swagger UI <span>— API-dokumentation</span></a>
-            <a href="/talent">GET /talent <span>— JSON-data om mig</span></a>
+            <a href="/swagger-ui.html">Swagger UI <span data-i18n="link_swagger">— API-dokumentation</span></a>
+            <a href="/talent">GET /talent <span data-i18n="link_talent">— JSON-data om mig</span></a>
             <a href="https://github.com/Gabel1998" target="_blank" rel="noopener">GitHub <span>— Gabel1998</span></a>
             <a href="https://www.linkedin.com/in/andreas-s%C3%B8gaard-gabel-758991133" target="_blank" rel="noopener">LinkedIn</a>
         </div>
 
-        <a href="https://andreasgabel.dk" target="_blank" rel="noopener" class="cta">
+        <a href="https://andreasgabel.dk" target="_blank" rel="noopener" class="cta" data-i18n="cta">
             Se min portfolio &rarr;
         </a>
 
         <div class="partner">
-            <h2 class="section-label">Soger sammen med</h2>
-            <p>Vi er to studiekammerater der soger praktik hos Tech Chapter sammen.</p>
+            <h2 class="section-label" data-i18n="partner_label">Søger sammen med</h2>
+            <p data-i18n="partner_desc">Vi er to studiekammerater der søger praktik hos Tech Chapter sammen.</p>
             <a href="https://nimasalami.dk" class="partner-card" target="_blank" rel="noopener">
                 <div class="partner-avatar">NS</div>
                 <div class="partner-info">
                     <div class="partner-name">Nima Salami</div>
-                    <div class="partner-desc">Datamatiker-studerende — se hans portfolio &rarr;</div>
+                    <div class="partner-desc" data-i18n="partner_nima">Datamatiker-studerende — se hans portfolio &rarr;</div>
                 </div>
             </a>
         </div>
@@ -663,8 +503,8 @@
     <!-- Exit intent banner -->
     <div class="exit-banner" id="exit-banner">
         <button class="exit-banner-close" id="exit-banner-close">&times;</button>
-        <p>Gar du allerede? Se hvad jeg har bygget!</p>
-        <a href="https://andreasgabel.dk" target="_blank" rel="noopener">Besog andreasgabel.dk &rarr;</a>
+        <p data-i18n="exit_text">Går du allerede? Se hvad jeg har bygget!</p>
+        <a href="https://andreasgabel.dk" target="_blank" rel="noopener" data-i18n="exit_cta">Besøg andreasgabel.dk &rarr;</a>
     </div>
 
     <!-- Modal -->
@@ -679,6 +519,75 @@
     </div>
 
     <script>
+        // ── i18n ──
+        const TRANSLATIONS = {
+            da: {
+                title: 'Datamatiker-studerende | DevOps & Backend',
+                bio: '4. semester datamatiker med fokus på DevOps og backend. Jeg drifter en cloud-native platform med fire projekter i produktion — Docker, GitHub Actions CI/CD, Nginx og DigitalOcean.',
+                docs_label: 'Dokumenter',
+                projects_label: 'Projekter i produktion',
+                projects_toggle: '4 live projekter på andreasgabel.dk',
+                project_portfolio: 'Multi-projekt platform med Nginx reverse proxy, CI/CD pipeline-visualisering og infrastruktur-dashboard.',
+                project_raidfines: 'WoW raid-bødesystem med OAuth2 login via Discord og GitHub.',
+                project_webcrawler: 'Konfigurerbar crawler med D3.js netværksvisualisering og AI-indholdsanalyse.',
+                project_beskyttelsesrum: 'Interaktivt kort over danske beskyttelsesrum med kapacitetsrapporter.',
+                link_swagger: '— API-dokumentation',
+                link_talent: '— JSON-data om mig',
+                cta: 'Se min portfolio \u2192',
+                partner_label: 'Søger sammen med',
+                partner_desc: 'Vi er to studiekammerater der søger praktik hos Tech Chapter sammen.',
+                partner_nima: 'Datamatiker-studerende — se hans portfolio \u2192',
+                exit_text: 'Går du allerede? Se hvad jeg har bygget!',
+                exit_cta: 'Besøg andreasgabel.dk \u2192',
+                loading: 'Henter...',
+                load_error: 'Kunne ikke hente dokumenter'
+            },
+            en: {
+                title: 'CS Student | DevOps & Backend',
+                bio: '4th semester Computer Science student focused on DevOps and backend development. I run a cloud-native platform with four projects in production — Docker, GitHub Actions CI/CD, Nginx and DigitalOcean.',
+                docs_label: 'Documents',
+                projects_label: 'Projects in production',
+                projects_toggle: '4 live projects on andreasgabel.dk',
+                project_portfolio: 'Multi-project platform with Nginx reverse proxy, CI/CD pipeline visualization and infrastructure dashboard.',
+                project_raidfines: 'WoW raid fine system with OAuth2 login via Discord and GitHub.',
+                project_webcrawler: 'Configurable crawler with D3.js network visualization and AI content analysis.',
+                project_beskyttelsesrum: 'Interactive map of Danish shelters with capacity reports.',
+                link_swagger: '— API documentation',
+                link_talent: '— JSON data about me',
+                cta: 'See my portfolio \u2192',
+                partner_label: 'Applying together with',
+                partner_desc: 'We are two classmates applying for an internship at Tech Chapter together.',
+                partner_nima: 'CS student — see his portfolio \u2192',
+                exit_text: 'Leaving already? Check out what I\'ve built!',
+                exit_cta: 'Visit andreasgabel.dk \u2192',
+                loading: 'Loading...',
+                load_error: 'Could not load documents'
+            }
+        };
+
+        let currentLang = localStorage.getItem('talent-api-lang') || 'da';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('talent-api-lang', lang);
+            document.documentElement.lang = lang;
+            document.getElementById('lang-toggle').textContent = lang === 'da' ? 'EN' : 'DA';
+
+            const t = TRANSLATIONS[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (t[key]) el.textContent = t[key];
+            });
+        }
+
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            setLang(currentLang === 'da' ? 'en' : 'da');
+        });
+
+        // Apply saved language on load
+        if (currentLang !== 'da') setLang(currentLang);
+
+        // ── Modal ──
         const overlay = document.getElementById('modal-overlay');
         const modalTitle = document.getElementById('modal-title');
         const modalBody = document.getElementById('modal-body');
@@ -686,10 +595,8 @@
 
         let talentId = null;
 
-        // Document IDs that should show in the "Dokumenter" section (not projects)
         const DOC_IDS = ['doc-0001-0000-0000-000000000001', 'doc-0002-0000-0000-000000000002'];
 
-        // Close modal
         modalClose.addEventListener('click', () => overlay.classList.remove('open'));
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) overlay.classList.remove('open');
@@ -698,7 +605,7 @@
             if (e.key === 'Escape') overlay.classList.remove('open');
         });
 
-        // Projects accordion toggle
+        // ── Projects accordion ──
         const toggle = document.getElementById('projects-toggle');
         const panel = document.getElementById('projects-panel');
         toggle.addEventListener('click', () => {
@@ -706,7 +613,7 @@
             panel.classList.toggle('open');
         });
 
-        // Load only Motivationsbrev + CV as clickable docs
+        // ── Load documents ──
         async function init() {
             try {
                 const talents = await fetch('/talent').then(r => r.json());
@@ -721,32 +628,33 @@
                 docs.filter(d => DOC_IDS.includes(d.id)).forEach(doc => {
                     const btn = document.createElement('button');
                     btn.className = 'doc-btn';
-                    btn.innerHTML = `${doc.name} <span class="doc-btn-arrow">&rarr;</span>`;
+                    btn.innerHTML = `${doc.name} <span class="doc-btn-arrow">\u2192</span>`;
                     btn.addEventListener('click', () => openDocument(doc.id, doc.name));
                     list.appendChild(btn);
                 });
             } catch {
+                const t = TRANSLATIONS[currentLang];
                 document.getElementById('doc-list').innerHTML =
-                    '<div class="doc-btn" style="justify-content:center;color:#6B7280;cursor:default;">Kunne ikke hente dokumenter</div>';
+                    `<div class="doc-btn" style="justify-content:center;color:#6B7280;cursor:default;">${t.load_error}</div>`;
             }
         }
 
         async function openDocument(docId, name) {
             modalTitle.textContent = name;
-            modalBody.innerHTML = '<div class="loading">Henter...</div>';
+            modalBody.innerHTML = `<div class="loading">${TRANSLATIONS[currentLang].loading}</div>`;
             overlay.classList.add('open');
 
             try {
                 const doc = await fetch(`/talent/${talentId}/documents/${docId}`).then(r => r.json());
                 modalBody.textContent = doc.content;
             } catch {
-                modalBody.textContent = 'Kunne ikke hente dokumentet.';
+                modalBody.textContent = TRANSLATIONS[currentLang].load_error;
             }
         }
 
         init();
 
-        // Exit intent — show when mouse leaves top, hide when mouse returns
+        // ── Exit intent ──
         let exitDismissed = false;
         const exitBanner = document.getElementById('exit-banner');
         const exitClose = document.getElementById('exit-banner-close');

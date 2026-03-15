@@ -69,7 +69,7 @@ public class TalentController {
     @GetMapping("/{id}/documents")
     @Operation(
         summary = "Hent dokumenter for en talent",
-        description = "Returnerer alle dokumenter (CV, motivationsbrev, projektbeskrivelser) der tilhorer den angivne talent."
+        description = "Returnerer alle dokumenter (CV, motivationsbrev, projektbeskrivelser) der tilhører den angivne talent."
     )
     @ApiResponses({
         @ApiResponse(

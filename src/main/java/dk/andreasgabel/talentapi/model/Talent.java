@@ -21,7 +21,7 @@ public class Talent {
     @Schema(description = "Stillingsbetegnelse eller rolle", example = "Datamatiker-studerende | DevOps & Backend")
     private final String title;
 
-    @Schema(description = "Kort introduktion til talentet", example = "4. semester datamatiker med fokus pa DevOps og backend...")
+    @Schema(description = "Kort introduktion til talentet", example = "4. semester datamatiker med fokus på DevOps og backend...")
     @JsonProperty("profile_text")
     private final String profileText;
 
@@ -31,7 +31,7 @@ public class Talent {
     @Schema(description = "Telefonnummer", example = "+45 12 34 56 78")
     private final String phone;
 
-    @Schema(description = "By", example = "Kobenhavn")
+    @Schema(description = "By", example = "København")
     private final String city;
 
     @Schema(description = "Land", example = "Danmark")
@@ -40,6 +40,6 @@ public class Talent {
     @Schema(description = "GitHub-profil URL", example = "https://github.com/Gabel1998", format = "uri", nullable = true)
     private final String github;
 
-    @Schema(description = "LinkedIn-profil URL", example = "https://www.linkedin.com/in/andreas-sogaard-gabel-758991133", format = "uri", nullable = true)
+    @Schema(description = "LinkedIn-profil URL", example = "https://www.linkedin.com/in/andreas-søgaard-gabel-758991133", format = "uri", nullable = true)
     private final String linkedin;
 }

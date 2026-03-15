@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         title = "Talent API",
         version = "1.0.0",
         description = "REST API til Tech Chapter praktikant-udfordring. "
-            + "Returnerer talent-profiler og tilhorende dokumenter (CV, motivationsbrev, projektbeskrivelser). "
+            + "Returnerer talent-profiler og tilhørende dokumenter (CV, motivationsbrev, projektbeskrivelser). "
             + "Bygget med Spring Boot 3, Java 21, Lombok og Swagger/OpenAPI 3.",
         contact = @Contact(
             name = "Andreas Gabel",

@@ -15,6 +15,6 @@ public class Document {
     @Schema(description = "Dokumentnavn", example = "Motivationsbrev")
     private final String name;
 
-    @Schema(description = "Dokumentets indhold i fuld tekst", example = "Kaere Tech Chapter, jeg soger hermed...")
+    @Schema(description = "Dokumentets indhold i fuld tekst", example = "Kære Tech Chapter, jeg søger hermed...")
     private final String content;
 }

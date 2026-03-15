@@ -25,7 +25,7 @@ public class TalentRepository {
                         "Fire projekter kører i produktion bag én reverse proxy med HTTPS, " +
                         "komplet med JaCoCo, Checkstyle, SpotBugs, Trivy og frontend linting. " +
                         "Har baggrund fra IT-operations hos Københavns Kommune, " +
-                        "hvor jeg automatiserede drift af Linux-baserede borger-PC'er.")
+                        "hvor jeg automatisere drift af Linux-baserede borger-PC'er.")
                     .email("andreassgabel@hotmail.com")
                     .phone(null)
                     .city("København")
