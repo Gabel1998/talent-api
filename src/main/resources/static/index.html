@@ -170,6 +170,14 @@
             font-weight: 400;
         }
 
+        .cta-row {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+        }
+
         .cta {
             display: inline-flex;
             align-items: center;
@@ -187,6 +195,77 @@
         .cta:hover {
             background: #1d4ed8;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+
+        /* Partner section */
+        .partner {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #E5E7EB;
+            text-align: center;
+        }
+
+        .partner h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6B7280;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .partner p {
+            color: #6B7280;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .partner-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: #111827;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+
+        .partner-card:hover {
+            border-color: #2563EB;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transform: translateY(-2px);
+        }
+
+        .partner-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #7C3AED;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .partner-info {
+            text-align: left;
+        }
+
+        .partner-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .partner-desc {
+            color: #6B7280;
+            font-size: 0.78rem;
         }
 
         .endpoints {
@@ -340,9 +419,23 @@
             <a href="https://www.linkedin.com/in/andreas-s%C3%B8gaard-gabel-758991133" target="_blank" rel="noopener">LinkedIn</a>
         </div>
 
-        <a href="https://andreasgabel.dk" target="_blank" rel="noopener" class="cta">
-            Se min portfolio &rarr;
-        </a>
+        <div class="cta-row">
+            <a href="https://andreasgabel.dk" target="_blank" rel="noopener" class="cta">
+                Se min portfolio &rarr;
+            </a>
+        </div>
+
+        <div class="partner">
+            <h2>Soger sammen med</h2>
+            <p>Vi er to studiekammerater der soger praktik hos Tech Chapter sammen.</p>
+            <a href="#" id="partner-link" class="partner-card" target="_blank" rel="noopener">
+                <div class="partner-avatar">NS</div>
+                <div class="partner-info">
+                    <div class="partner-name">Nima Salami</div>
+                    <div class="partner-desc">Datamatiker-studerende — se hans Talent API</div>
+                </div>
+            </a>
+        </div>
 
         <div class="endpoints">
             <h2>API Endpoints</h2>

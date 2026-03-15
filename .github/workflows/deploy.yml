@@ -1,4 +1,4 @@
-name: Build & Push to GHCR
+name: CD — Build, Push & Health Check
 
 on:
   push:
@@ -7,9 +7,10 @@ on:
 permissions:
   contents: read
   packages: write
+  checks: write
 
 jobs:
-  build-and-push:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,11 +22,40 @@ jobs:
           distribution: temurin
           cache: maven
 
-      - name: Build with Maven
-        run: mvn package -DskipTests -q
+      - name: Build
+        run: mvn compile -q
 
       - name: Run tests
         run: mvn test
+
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: JUnit Results
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+
+      - name: Upload JaCoCo coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
+
+      - name: Checkstyle
+        run: mvn checkstyle:check -q
+        continue-on-error: true
+
+      - name: SpotBugs
+        run: mvn spotbugs:check -q
+        continue-on-error: true
+
+  push-image:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -42,3 +72,48 @@ jobs:
           tags: |
             ghcr.io/gabel1998/talent-api:latest
             ghcr.io/gabel1998/talent-api:${{ github.sha }}
+
+  trivy-scan:
+    needs: push-image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ghcr.io/gabel1998/talent-api:${{ github.sha }}
+          format: table
+          exit-code: 0
+          severity: CRITICAL,HIGH
+        env:
+          TRIVY_USERNAME: ${{ github.actor }}
+          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+  health-check:
+    needs: push-image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull and start container
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker run -d -p 8080:8080 --name talent-api ghcr.io/gabel1998/talent-api:${{ github.sha }}
+          sleep 10
+
+      - name: Health check
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/actuator/health)
+          if [ "$STATUS" != "200" ]; then
+            echo "Health check failed with status $STATUS"
+            docker logs talent-api
+            exit 1
+          fi
+          echo "Health check passed"
+          curl -s http://localhost:8080/actuator/health | head -c 500
+
+      - name: Smoke test — GET /talent
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/talent)
+          if [ "$STATUS" != "200" ]; then
+            echo "Smoke test failed: GET /talent returned $STATUS"
+            exit 1
+          fi
+          echo "Smoke test passed — GET /talent returns 200"
