@@ -12,6 +12,7 @@ import java.util.Optional;
 public class TalentRepository {
 
     private static final String ANDREAS_ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
+    private static final String NIMA_ID = "b2c3d4e5-f6a7-8901-bcde-f12345678901";
 
     private final List<Talent> talents = List.of(
             Talent.builder()
@@ -25,13 +26,30 @@ public class TalentRepository {
                         "Fire projekter kører i produktion bag én reverse proxy med HTTPS, " +
                         "komplet med JaCoCo, Checkstyle, SpotBugs, Trivy og frontend linting. " +
                         "Har baggrund fra IT-operations hos Københavns Kommune, " +
-                        "hvor jeg automatisere drift af Linux-baserede borger-PC'er.")
+                        "hvor jeg automatiserer drift af Linux-baserede borger-PC'er.")
                     .email("andreassgabel@hotmail.com")
-                    .phone(null)
+                    .phone("+45 60 77 66 13")
                     .city("København")
-                    .country("Denmark")
+                    .country("Danmark")
                     .github("https://github.com/Gabel1998")
                     .linkedin("https://www.linkedin.com/in/andreas-søgaard-gabel-758991133")
+                    .build(),
+            Talent.builder()
+                    .id(NIMA_ID)
+                    .name("Nima Salami")
+                    .title("Datamatiker-studerende | DevOps & infrastruktur")
+                    .profileText(
+                        "4. semester datamatiker på KEA med specialisering i DevOps, infrastruktur og automatisering. " +
+                        "Drifter egne produktionskørende servere i fritiden – ikke fordi det er et krav, " +
+                        "men fordi jeg vil forstå systemerne i dybden. " +
+                        "Baggrund i ledelse og drift, hvor ansvar og overblik var en forudsætning. " +
+                        "Jeg venter ikke på at få en opgave tildelt – jeg finder ud af hvad der skal løses.")
+                    .email("nima@nimasalami.dk")
+                    .phone("+45 22 98 50 77")
+                    .city("København NV")
+                    .country("Danmark")
+                    .github("https://github.com/hajisan")
+                    .linkedin("https://www.linkedin.com/in/nima-salami-41197744/")
                     .build()
     );
 
@@ -39,7 +57,7 @@ public class TalentRepository {
             ANDREAS_ID, List.of(
 
                     Document.builder()
-                            .id("doc-0001-0000-0000-000000000001")
+                            .id("d0c00001-0000-0000-0000-000000000001")
                             .name("Motivationsbrev")
                             .content(
                                 "Jeg søger praktikplads hos Tech Chapter i perioden august til slut oktober 2026. " +
@@ -57,7 +75,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("doc-0002-0000-0000-000000000002")
+                            .id("d0c00002-0000-0000-0000-000000000002")
                             .name("CV")
                             .content(
                                 "UDDANNELSE: Datamatiker, Erhvervsakademi København (EK), 2024–2027. " +
@@ -78,7 +96,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("doc-0003-0000-0000-000000000003")
+                            .id("d0c00003-0000-0000-0000-000000000003")
                             .name("Projekt: Portfolio-platform")
                             .content(
                                 "LINK: https://andreasgabel.dk | INFRA: https://andreasgabel.dk/infrastructure.html " +
@@ -96,7 +114,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("doc-0004-0000-0000-000000000004")
+                            .id("d0c00004-0000-0000-0000-000000000004")
                             .name("Projekt: Raid Fines")
                             .content(
                                 "LINK: https://andreasgabel.dk/raidfines " +
@@ -109,7 +127,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("doc-0005-0000-0000-000000000005")
+                            .id("d0c00005-0000-0000-0000-000000000005")
                             .name("Projekt: Web Crawler")
                             .content(
                                 "LINK: https://andreasgabel.dk/webcrawler " +
@@ -122,7 +140,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("doc-0006-0000-0000-000000000006")
+                            .id("d0c00006-0000-0000-0000-000000000006")
                             .name("Projekt: Beskyttelsesrum Danmark")
                             .content(
                                 "LINK: https://andreasgabel.dk/beskyttelsesrum " +

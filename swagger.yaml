@@ -99,7 +99,7 @@ paths:
           in: path
           required: true
           description: Document ID
-          example: d001
+          example: d0c00001-0000-0000-0000-000000000001
           schema:
             type: string
       responses:
@@ -170,7 +170,7 @@ components:
         id:
           type: string
           description: Unik identifikator
-          example: d001
+          example: d0c00001-0000-0000-0000-000000000001
         name:
           type: string
           description: Dokumentnavn

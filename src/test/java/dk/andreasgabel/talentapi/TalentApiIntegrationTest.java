@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
+@SpringBootTest(properties = "IMAGE_TAG=sha-test")
 @AutoConfigureMockMvc
 class TalentApiIntegrationTest {
 
@@ -60,7 +60,7 @@ class TalentApiIntegrationTest {
 
     @Test
     void getDocument_validIds_returnsDocument() throws Exception {
-        mvc.perform(get("/talent/a1b2c3d4-e5f6-7890-abcd-ef1234567890/documents/doc-0001-0000-0000-000000000001"))
+        mvc.perform(get("/talent/a1b2c3d4-e5f6-7890-abcd-ef1234567890/documents/d0c00001-0000-0000-0000-000000000001"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("Motivationsbrev")))
                 .andExpect(jsonPath("$.content").isNotEmpty());
