@@ -1,8 +1,8 @@
 import * as Modal from './modal.js';
 import * as I18n from './i18n.js';
 
-let talentId = null;
-let docId = null;
+let talents = [];
+let docsByTalent = {};
 
 async function init() {
     // Accordion toggle
@@ -13,15 +13,14 @@ async function init() {
         panel.classList.toggle('open');
     });
 
-    // Fetch IDs for real URLs
+    // Fetch all talent IDs and their documents
     try {
-        const talents = await fetch('talent').then(r => r.json());
-        if (talents.length) {
-            talentId = talents[0].id;
-            const docs = await fetch(`talent/${talentId}/documents`).then(r => r.json());
-            if (docs.length) docId = docs[0].id;
+        talents = await fetch('talent').then(r => r.json());
+        for (const t of talents) {
+            const docs = await fetch(`talent/${t.id}/documents`).then(r => r.json());
+            docsByTalent[t.id] = docs;
         }
-    } catch { /* IDs stay null, endpoints still work with placeholders */ }
+    } catch { /* fallback to empty */ }
 
     // Endpoint buttons
     panel.querySelectorAll('.endpoint-btn').forEach(btn => {
@@ -29,26 +28,43 @@ async function init() {
     });
 }
 
-function resolvePath(path) {
-    let resolved = path;
-    if (talentId) resolved = resolved.replace('{id}', talentId);
-    if (docId) resolved = resolved.replace('{documentId}', docId);
-    return resolved;
-}
-
 async function openEndpoint(path) {
-    const resolved = resolvePath(path);
     const displayPath = `GET /${path}`;
     Modal.open(displayPath, I18n.t('loading'));
 
     try {
-        const res = await fetch(resolved);
-        if (!res.ok) {
-            Modal.setContent(`${res.status} ${res.statusText}`);
-            return;
+        if (path === 'talent') {
+            const res = await fetch('talent').then(r => r.json());
+            Modal.setJsonContent('talent', res);
+
+        } else if (path === 'talent/{id}') {
+            const results = [];
+            for (const t of talents) {
+                const res = await fetch(`talent/${t.id}`).then(r => r.json());
+                results.push({ url: `talent/${t.id}`, data: res });
+            }
+            Modal.setMultiJsonContent(results);
+
+        } else if (path === 'talent/{id}/documents') {
+            const results = [];
+            for (const t of talents) {
+                const res = await fetch(`talent/${t.id}/documents`).then(r => r.json());
+                results.push({ url: `talent/${t.id}/documents`, data: res });
+            }
+            Modal.setMultiJsonContent(results);
+
+        } else if (path === 'talent/{id}/documents/{documentId}') {
+            const results = [];
+            for (const t of talents) {
+                const docs = docsByTalent[t.id] || [];
+                for (const doc of docs) {
+                    const url = `talent/${t.id}/documents/${doc.id}`;
+                    const res = await fetch(url).then(r => r.json());
+                    results.push({ url, data: res });
+                }
+            }
+            Modal.setMultiJsonContent(results);
         }
-        const data = await res.json();
-        Modal.setJsonContent(resolved, data);
     } catch {
         Modal.setContent(I18n.t('load_error'));
     }

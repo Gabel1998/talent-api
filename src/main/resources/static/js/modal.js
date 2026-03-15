@@ -21,6 +21,13 @@ function setJsonContent(url, data) {
     body.innerHTML = `<div class="modal-url"><code>${url}</code></div><pre class="modal-json">${escapeHtml(json)}</pre>`;
 }
 
+function setMultiJsonContent(results) {
+    body.innerHTML = results.map(r => {
+        const json = JSON.stringify(r.data, null, 2);
+        return `<div class="modal-url"><code>${r.url}</code></div><pre class="modal-json">${escapeHtml(json)}</pre>`;
+    }).join('<div class="modal-divider"></div>');
+}
+
 function escapeHtml(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
@@ -29,4 +36,4 @@ function close() {
     overlay.classList.remove('open');
 }
 
-export { open, setContent, setJsonContent, close };
+export { open, setContent, setJsonContent, setMultiJsonContent, close };
