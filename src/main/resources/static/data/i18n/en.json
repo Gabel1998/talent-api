@@ -1,0 +1,23 @@
+{
+    "title": "CS Student | DevOps & Backend",
+    "bio": "4th semester Computer Science student focused on DevOps and backend development. I run a cloud-native platform with four projects in production — Docker, GitHub Actions CI/CD, Nginx and DigitalOcean.",
+    "docs_label": "Documents",
+    "projects_label": "Projects in production",
+    "projects_toggle": "4 live projects on andreasgabel.dk",
+    "project_portfolio": "Multi-project platform with Nginx reverse proxy, CI/CD pipeline visualization and infrastructure dashboard.",
+    "project_raidfines": "WoW raid fine system with OAuth2 login via Discord and GitHub.",
+    "project_webcrawler": "Configurable crawler with D3.js network visualization and AI content analysis.",
+    "project_beskyttelsesrum": "Interactive map of Danish shelters with capacity reports.",
+    "link_swagger": "— API documentation",
+    "link_talent": "— JSON data about me",
+    "cta": "See my portfolio \u2192",
+    "partner_label": "Applying together with",
+    "partner_desc": "We are two classmates applying for an internship at Tech Chapter together.",
+    "partner_nima": "CS student — see his portfolio \u2192",
+    "exit_text": "Leaving already? Check out what I've built!",
+    "exit_cta": "Visit andreasgabel.dk \u2192",
+    "loading": "Loading...",
+    "load_error": "Could not load documents",
+    "doc_motivationsbrev": "Cover Letter",
+    "doc_cv": "CV / Resume"
+}

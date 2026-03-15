@@ -1,0 +1,90 @@
+.projects { margin-bottom: 2rem; }
+
+.projects-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.projects-toggle:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.projects-toggle.open {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border-bottom-color: transparent;
+}
+
+.chevron {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    transition: transform 0.2s;
+}
+
+.projects-toggle.open .chevron { transform: rotate(180deg); }
+
+.projects-panel {
+    display: none;
+    border: 1px solid var(--color-border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    overflow: hidden;
+}
+
+.projects-panel.open { display: block; }
+
+.project-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+}
+
+.project-item:last-child { border-bottom: none; }
+.project-item:hover { background: #F9FAFB; }
+
+.project-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.project-details { flex: 1; min-width: 0; }
+.project-name { font-weight: 600; font-size: 0.85rem; color: var(--color-text); }
+.project-desc { font-size: 0.78rem; color: var(--color-text-secondary); line-height: 1.4; margin-top: 1px; }
+
+.project-stack { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-top: 0.3rem; }
+
+.project-stack-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    padding: 1px 0.35rem;
+    background: var(--color-tag-bg);
+    border-radius: 0.2rem;
+    color: var(--color-tag-text);
+}

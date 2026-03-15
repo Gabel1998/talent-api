@@ -1,0 +1,55 @@
+.exit-banner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    z-index: 2000;
+    text-align: center;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.exit-banner.show { display: block; }
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+.exit-banner p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+}
+
+.exit-banner a {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: #fff;
+    color: var(--color-accent);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background 0.15s;
+}
+
+.exit-banner a:hover { background: var(--color-tag-bg); }
+
+.exit-banner-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.3rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.exit-banner-close:hover { color: #fff; }

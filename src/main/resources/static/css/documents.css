@@ -1,0 +1,35 @@
+.documents { margin-bottom: 1.5rem; }
+
+.doc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.doc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.doc-btn:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.doc-btn-arrow {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+}

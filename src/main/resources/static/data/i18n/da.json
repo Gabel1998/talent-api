@@ -1,0 +1,23 @@
+{
+    "title": "Datamatiker-studerende | DevOps & Backend",
+    "bio": "4. semester datamatiker med fokus på DevOps og backend. Jeg drifter en cloud-native platform med fire projekter i produktion — Docker, GitHub Actions CI/CD, Nginx og DigitalOcean.",
+    "docs_label": "Dokumenter",
+    "projects_label": "Projekter i produktion",
+    "projects_toggle": "4 live projekter på andreasgabel.dk",
+    "project_portfolio": "Multi-projekt platform med Nginx reverse proxy, CI/CD pipeline-visualisering og infrastruktur-dashboard.",
+    "project_raidfines": "WoW raid-bødesystem med OAuth2 login via Discord og GitHub.",
+    "project_webcrawler": "Konfigurerbar crawler med D3.js netværksvisualisering og AI-indholdsanalyse.",
+    "project_beskyttelsesrum": "Interaktivt kort over danske beskyttelsesrum med kapacitetsrapporter.",
+    "link_swagger": "— API-dokumentation",
+    "link_talent": "— JSON-data om mig",
+    "cta": "Se min portfolio \u2192",
+    "partner_label": "Søger sammen med",
+    "partner_desc": "Vi er to studiekammerater der søger praktik hos Tech Chapter sammen.",
+    "partner_nima": "Datamatiker-studerende — se hans portfolio \u2192",
+    "exit_text": "Går du allerede? Se hvad jeg har bygget!",
+    "exit_cta": "Besøg andreasgabel.dk \u2192",
+    "loading": "Henter...",
+    "load_error": "Kunne ikke hente dokumenter",
+    "doc_motivationsbrev": "Motivationsbrev",
+    "doc_cv": "CV"
+}

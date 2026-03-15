@@ -1,0 +1,23 @@
+:root {
+    --color-accent: #2563EB;
+    --color-accent-hover: #1d4ed8;
+    --color-bg: #FFFFFF;
+    --color-surface: #F3F4F6;
+    --color-page-bg: #F3F4F6;
+    --color-text: #111827;
+    --color-text-secondary: #6B7280;
+    --color-text-muted: #374151;
+    --color-border: #E5E7EB;
+    --color-tag-bg: #EEF2FF;
+    --color-tag-text: #4338CA;
+    --color-partner: #7C3AED;
+
+    --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Fira Code', ui-monospace, monospace;
+
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
