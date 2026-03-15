@@ -5,7 +5,7 @@
     "projects_label": "Projects in production",
     "projects_toggle": "4 live projects on andreasgabel.dk",
     "project_portfolio": "Multi-project platform with Nginx reverse proxy, CI/CD pipeline visualization and infrastructure dashboard.",
-    "project_raidfines": "WoW raid fine system with OAuth2 login via Discord and GitHub.",
+    "project_raidfines": "WoW raid fine system with OAuth2 login via Battle.net and GitHub. Incl. custom Lua addon.",
     "project_webcrawler": "Configurable crawler with D3.js network visualization and AI content analysis.",
     "project_beskyttelsesrum": "Interactive map of Danish shelters with capacity reports.",
     "link_swagger": "— API documentation",
