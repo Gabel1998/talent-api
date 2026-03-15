@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andreas Gabel — Talent API</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            max-width: 560px;
+            width: 90%;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 auto 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 0.3rem;
+        }
+
+        .title {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .links a {
+            display: block;
+            padding: 0.7rem 1rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: border-color 0.15s, background 0.15s;
+        }
+
+        .links a:hover {
+            border-color: #3b82f6;
+            background: #1a2744;
+        }
+
+        .links a span {
+            color: #64748b;
+            font-size: 0.75rem;
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #3b82f6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.15s;
+        }
+
+        .cta:hover { background: #2563eb; }
+
+        .endpoints {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #334155;
+            text-align: left;
+        }
+
+        .endpoints h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 0.8rem;
+        }
+
+        .endpoint {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            padding: 0.35rem 0;
+        }
+
+        .endpoint code {
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="avatar">AG</div>
+        <h1>Andreas Gabel</h1>
+        <p class="title">Datamatiker-studerende | DevOps & Backend</p>
+        <p class="bio">
+            4. semester datamatiker med fokus pa DevOps og backend.
+            Jeg drifter en cloud-native platform med fire projekter i produktion
+            — Docker, GitHub Actions CI/CD, Nginx og DigitalOcean.
+        </p>
+
+        <div class="links">
+            <a href="/swagger-ui.html">Swagger UI <span>— API-dokumentation</span></a>
+            <a href="/talent">GET /talent <span>— JSON-data om mig</span></a>
+            <a href="https://github.com/Gabel1998" target="_blank" rel="noopener">GitHub <span>— Gabel1998</span></a>
+            <a href="https://www.linkedin.com/in/andreas-s%C3%B8gaard-gabel-758991133" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+
+        <a href="https://andreasgabel.dk" target="_blank" rel="noopener" class="cta">
+            Se min portfolio &rarr;
+        </a>
+
+        <div class="endpoints">
+            <h2>API Endpoints</h2>
+            <div class="endpoint"><code>GET</code> /talent</div>
+            <div class="endpoint"><code>GET</code> /talent/{id}</div>
+            <div class="endpoint"><code>GET</code> /talent/{id}/documents</div>
+            <div class="endpoint"><code>GET</code> /talent/{id}/documents/{documentId}</div>
+        </div>
+    </div>
+</body>
+</html>
