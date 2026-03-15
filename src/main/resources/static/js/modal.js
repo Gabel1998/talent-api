@@ -16,8 +16,17 @@ function setContent(text) {
     body.textContent = text;
 }
 
+function setJsonContent(url, data) {
+    const json = JSON.stringify(data, null, 2);
+    body.innerHTML = `<div class="modal-url"><code>${url}</code></div><pre class="modal-json">${escapeHtml(json)}</pre>`;
+}
+
+function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function close() {
     overlay.classList.remove('open');
 }
 
-export { open, setContent, close };
+export { open, setContent, setJsonContent, close };
