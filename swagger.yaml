@@ -2,14 +2,28 @@ openapi: 3.0.0
 info:
   title: Talent API
   version: 1.0.0
+  description: >
+    REST API til Tech Chapter praktikant-udfordring.
+    Returnerer talent-profiler og tilhorende dokumenter (CV, motivationsbrev, projektbeskrivelser).
+    Bygget med Spring Boot 3, Java 21, Lombok og Swagger/OpenAPI 3.
+  contact:
+    name: Andreas Gabel
+    url: https://andreasgabel.dk
+    email: andreasgabel98@gmail.com
+servers:
+  - url: /
+    description: Current server
 paths:
   /talent:
     get:
-      summary: Get a list of talents
-      #checkov:skip=CKV_OPENAPI_5:This API does not need auth
+      summary: Hent alle talents
+      description: Returnerer en liste over alle registrerede talent-profiler med kontaktinfo og links.
+      operationId: getAllTalents
+      tags:
+        - Talent
       responses:
         '200':
-          description: A list of talents
+          description: Liste af talents
           content:
             application/json:
               schema:
@@ -18,103 +32,150 @@ paths:
                   $ref: '#/components/schemas/Talent'
   /talent/{id}:
     get:
-      summary: Get a specific talent
-      #checkov:skip=CKV_OPENAPI_5:This API does not need auth
+      summary: Hent en specifik talent
+      description: Returnerer en enkelt talent-profil ud fra det angivne ID (UUID).
+      operationId: getTalentById
+      tags:
+        - Talent
       parameters:
         - name: id
           in: path
           required: true
+          description: Talent ID (UUID)
+          example: 550e8400-e29b-41d4-a716-446655440000
           schema:
             type: string
       responses:
         '200':
-          description: A specific talent
+          description: Talent fundet
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Talent'
+        '404':
+          description: Talent ikke fundet — ugyldigt eller ukendt ID
   /talent/{id}/documents:
     get:
-      summary: Get documents for a specific talent
-      #checkov:skip=CKV_OPENAPI_5:This API does not need auth
+      summary: Hent dokumenter for en talent
+      description: Returnerer alle dokumenter (CV, motivationsbrev, projektbeskrivelser) der tilhorer den angivne talent.
+      operationId: getDocuments
+      tags:
+        - Talent
       parameters:
         - name: id
           in: path
           required: true
+          description: Talent ID (UUID)
+          example: 550e8400-e29b-41d4-a716-446655440000
           schema:
             type: string
       responses:
         '200':
-          description: A list of documents
+          description: Liste af dokumenter
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Document'
+        '404':
+          description: Talent ikke fundet
   /talent/{id}/documents/{documentId}:
     get:
-      summary: Get a specific document for a talent
-      #checkov:skip=CKV_OPENAPI_5:This API does not need auth
+      summary: Hent et specifikt dokument
+      description: Returnerer et enkelt dokument for en talent, f.eks. CV eller motivationsbrev.
+      operationId: getDocument
+      tags:
+        - Talent
       parameters:
         - name: id
           in: path
           required: true
+          description: Talent ID (UUID)
+          example: 550e8400-e29b-41d4-a716-446655440000
           schema:
             type: string
         - name: documentId
           in: path
           required: true
+          description: Document ID
+          example: d001
           schema:
             type: string
       responses:
         '200':
-          description: A specific document
+          description: Dokument fundet
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Document'
+        '404':
+          description: Talent eller dokument ikke fundet
 components:
-   #checkov:skip=CKV_OPENAPI_4:This API does not need auth
   schemas:
     Talent:
       type: object
+      description: En talent-profil med kontaktoplysninger og links til online profiler
       properties:
         id:
           type: string
           format: uuid
+          description: Unik identifikator (UUID)
+          example: 550e8400-e29b-41d4-a716-446655440000
         name:
           type: string
+          description: Fulde navn
+          example: Andreas Gabel
         title:
-          description: "The talent Job title"
-          type: string  
+          type: string
+          description: Stillingsbetegnelse eller rolle
+          example: Datamatiker-studerende | DevOps & Backend
         profile_text:
-          description: "A short introduction to the talent"
-          type: string  
+          type: string
+          description: Kort introduktion til talentet
+          example: 4. semester datamatiker med fokus pa DevOps og backend...
         email:
           type: string
           format: email
+          description: E-mailadresse
+          example: andreasgabel98@gmail.com
         phone:
           type: string
+          description: Telefonnummer
+          example: "+45 12 34 56 78"
         city:
           type: string
+          description: By
+          example: Kobenhavn
         country:
           type: string
+          description: Land
+          example: Danmark
         github:
           type: string
           format: uri
           nullable: true
+          description: GitHub-profil URL
+          example: https://github.com/Gabel1998
         linkedin:
           type: string
           format: uri
           nullable: true
+          description: LinkedIn-profil URL
+          example: https://www.linkedin.com/in/andreas-sogaard-gabel-758991133
     Document:
       type: object
+      description: Et dokument tilknyttet en talent — f.eks. CV, motivationsbrev eller projektbeskrivelse
       properties:
         id:
           type: string
-          format: uuid
+          description: Unik identifikator
+          example: d001
         name:
           type: string
+          description: Dokumentnavn
+          example: Motivationsbrev
         content:
           type: string
+          description: Dokumentets indhold i fuld tekst
+          example: Kaere Tech Chapter, jeg soger hermed...
