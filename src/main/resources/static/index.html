@@ -746,13 +746,15 @@
 
         init();
 
-        // Exit intent — triggers when mouse leaves viewport (desktop)
+        // Exit intent — triggers when mouse moves toward top of page (desktop)
         let exitShown = false;
         const exitBanner = document.getElementById('exit-banner');
         const exitClose = document.getElementById('exit-banner-close');
 
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY <= 0 && !exitShown) {
+        document.addEventListener('mouseout', (e) => {
+            if (exitShown) return;
+            // Only trigger when mouse actually leaves the document (not moving between elements)
+            if (e.relatedTarget === null && e.clientY <= 5) {
                 exitShown = true;
                 exitBanner.classList.add('show');
             }
