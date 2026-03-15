@@ -1,4 +1,4 @@
-name: CD — Build, Push & Health Check
+name: CD — Build, Push, Deploy & Health Check
 
 on:
   push:
@@ -10,6 +10,7 @@ permissions:
   checks: write
 
 jobs:
+  # ── CI: Build, Test & Code Quality ──
   build-and-test:
     runs-on: ubuntu-latest
     steps:
@@ -51,6 +52,7 @@ jobs:
         run: mvn spotbugs:check -q
         continue-on-error: true
 
+  # ── CD Delivery: Push image to GHCR ──
   push-image:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -73,6 +75,7 @@ jobs:
             ghcr.io/gabel1998/talent-api:latest
             ghcr.io/gabel1998/talent-api:${{ github.sha }}
 
+  # ── Security: Trivy vulnerability scan ──
   trivy-scan:
     needs: push-image
     runs-on: ubuntu-latest
@@ -88,32 +91,51 @@ jobs:
           TRIVY_USERNAME: ${{ github.actor }}
           TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
-  health-check:
+  # ── CD Deployment: Deploy to droplet ──
+  deploy:
     needs: push-image
     runs-on: ubuntu-latest
     steps:
-      - name: Pull and start container
-        run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-          docker run -d -p 8080:8080 --name talent-api ghcr.io/gabel1998/talent-api:${{ github.sha }}
-          sleep 10
+      - name: Deploy to droplet via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DROPLET_HOST }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH_KEY }}
+          script: |
+            cd /opt/portfolio
+            docker compose pull talent-api
+            docker compose up -d talent-api
+            docker image prune -f
+
+  # ── CF: Health check & smoke test ──
+  health-check:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for container startup
+        run: sleep 15
 
       - name: Health check
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/actuator/health)
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://andreasgabel.dk/talent-api/actuator/health || echo "000")
+          if [ "$STATUS" != "200" ]; then
+            echo "Health check failed with status $STATUS — trying direct port..."
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://${{ secrets.DROPLET_HOST }}:8085/actuator/health || echo "000")
+          fi
           if [ "$STATUS" != "200" ]; then
             echo "Health check failed with status $STATUS"
-            docker logs talent-api
             exit 1
           fi
           echo "Health check passed"
-          curl -s http://localhost:8080/actuator/health | head -c 500
 
       - name: Smoke test — GET /talent
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/talent)
-          if [ "$STATUS" != "200" ]; then
-            echo "Smoke test failed: GET /talent returned $STATUS"
+          RESPONSE=$(curl -s https://andreasgabel.dk/talent-api/talent || curl -s http://${{ secrets.DROPLET_HOST }}:8085/talent)
+          if echo "$RESPONSE" | grep -q "Andreas Gabel"; then
+            echo "Smoke test passed — API returns talent data"
+          else
+            echo "Smoke test failed — unexpected response"
+            echo "$RESPONSE"
             exit 1
           fi
-          echo "Smoke test passed — GET /talent returns 200"
