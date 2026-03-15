@@ -10,5 +10,7 @@ RUN mvn package -DskipTests -q
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/talent-api-1.0.0.jar app.jar
+ARG IMAGE_TAG=latest
+ENV IMAGE_TAG=${IMAGE_TAG}
 EXPOSE 8080
 ENTRYPOINT ["java", "-Dspring.profiles.active=production", "-jar", "app.jar"]
