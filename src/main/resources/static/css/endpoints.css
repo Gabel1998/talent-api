@@ -5,14 +5,93 @@
     text-align: left;
 }
 
-.endpoint {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--color-text-secondary);
-    padding: 0.35rem 0;
+.endpoints-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.endpoint code {
+.endpoints-toggle:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.endpoints-toggle.open {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border-bottom-color: transparent;
+}
+
+.endpoints-toggle .chevron {
     color: var(--color-accent);
-    font-weight: 500;
+    font-size: 0.75rem;
+    transition: transform 0.2s;
+}
+
+.endpoints-toggle.open .chevron {
+    transform: rotate(180deg);
+}
+
+.endpoints-panel {
+    display: none;
+    border: 1px solid var(--color-border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    overflow: hidden;
+}
+
+.endpoints-panel.open {
+    display: block;
+}
+
+.endpoint-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    text-align: left;
+}
+
+.endpoint-btn:last-child {
+    border-bottom: none;
+}
+
+.endpoint-btn:hover {
+    background: var(--color-surface);
+}
+
+.endpoint-btn code {
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.endpoint-btn .doc-btn-arrow {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.endpoint-btn:hover .doc-btn-arrow {
+    opacity: 1;
 }
