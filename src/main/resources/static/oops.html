@@ -113,14 +113,14 @@
         const tagEl = document.getElementById('image-tag');
         const copiedEl = document.getElementById('copied-msg');
 
-        fetch('api/image-tag')
+        fetch('https://api.github.com/repos/Gabel1998/talent-api/commits/main')
             .then(r => r.json())
             .then(data => {
-                const full = `ghcr.io/gabel1998/talent-api:${data.tag}`;
-                tagEl.textContent = full;
+                const sha = data.sha;
+                tagEl.textContent = `ghcr.io/gabel1998/talent-api:sha-${sha}`;
             })
             .catch(() => {
-                tagEl.textContent = 'ghcr.io/gabel1998/talent-api:sha-<commit-hash>';
+                tagEl.textContent = 'Se GitHub repo for korrekt SHA-tag';
             });
 
         tagEl.addEventListener('click', () => {
