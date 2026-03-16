@@ -48,6 +48,32 @@
             </div>
         </div>
 
+        <div class="endpoints">
+            <h2 class="section-label">API Endpoints</h2>
+            <button class="endpoints-toggle" id="endpoints-toggle">
+                <span data-i18n="endpoints_toggle">4 endpoints — tryk for at udforske</span>
+                <span class="chevron">&#9660;</span>
+            </button>
+            <div class="endpoints-panel" id="endpoints-panel">
+                <button class="endpoint-btn" data-path="talent">
+                    <code>GET</code> /talent
+                    <span class="doc-btn-arrow">&#8594;</span>
+                </button>
+                <button class="endpoint-btn" data-path="talent/{id}">
+                    <code>GET</code> /talent/{id}
+                    <span class="doc-btn-arrow">&#8594;</span>
+                </button>
+                <button class="endpoint-btn" data-path="talent/{id}/documents">
+                    <code>GET</code> /talent/{id}/documents
+                    <span class="doc-btn-arrow">&#8594;</span>
+                </button>
+                <button class="endpoint-btn" data-path="talent/{id}/documents/{documentId}">
+                    <code>GET</code> /talent/{id}/documents/{documentId}
+                    <span class="doc-btn-arrow">&#8594;</span>
+                </button>
+            </div>
+        </div>
+
         <div class="projects">
             <h2 class="section-label" data-i18n="projects_label">Projekter i produktion</h2>
             <button class="projects-toggle" id="projects-toggle">
@@ -130,31 +156,6 @@
             </a>
         </div>
 
-        <div class="endpoints">
-            <h2 class="section-label">API Endpoints</h2>
-            <button class="endpoints-toggle" id="endpoints-toggle">
-                <span data-i18n="endpoints_toggle">4 endpoints — tryk for at udforske</span>
-                <span class="chevron">&#9660;</span>
-            </button>
-            <div class="endpoints-panel" id="endpoints-panel">
-                <button class="endpoint-btn" data-path="talent">
-                    <code>GET</code> /talent
-                    <span class="doc-btn-arrow">&#8594;</span>
-                </button>
-                <button class="endpoint-btn" data-path="talent/{id}">
-                    <code>GET</code> /talent/{id}
-                    <span class="doc-btn-arrow">&#8594;</span>
-                </button>
-                <button class="endpoint-btn" data-path="talent/{id}/documents">
-                    <code>GET</code> /talent/{id}/documents
-                    <span class="doc-btn-arrow">&#8594;</span>
-                </button>
-                <button class="endpoint-btn" data-path="talent/{id}/documents/{documentId}">
-                    <code>GET</code> /talent/{id}/documents/{documentId}
-                    <span class="doc-btn-arrow">&#8594;</span>
-                </button>
-            </div>
-        </div>
     </div>
 
     <!-- Exit intent banner -->
