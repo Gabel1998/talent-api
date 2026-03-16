@@ -117,7 +117,7 @@ jobs:
       - name: Set new SHA tag in docker-compose.yml
         run: |
           cd portfolio
-          sed -i "s|ghcr.io/gabel1998/talent-api:sha-[a-f0-9]*|ghcr.io/gabel1998/talent-api:sha-${{ github.sha }}|" docker-compose.yml
+          sed -i "s|ghcr.io/gabel1998/talent-api:[a-z0-9-]*|ghcr.io/gabel1998/talent-api:sha-${{ github.sha }}|" docker-compose.yml
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docker-compose.yml
@@ -132,7 +132,7 @@ jobs:
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
             cd /opt/portfolio
-            git pull
+            git pull origin main
             docker compose pull talent-api
             docker compose up -d talent-api
             docker image prune -f
