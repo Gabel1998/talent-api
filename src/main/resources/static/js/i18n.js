@@ -2,8 +2,8 @@ let translations = {};
 let currentLang = localStorage.getItem('talent-api-lang') || 'da';
 
 const DOC_NAMES = {
-    'd0c00001-0000-0000-0000-000000000001': 'doc_motivationsbrev',
-    'd0c00002-0000-0000-0000-000000000002': 'doc_cv'
+    'Motivationsbrev': 'doc_motivationsbrev',
+    'CV': 'doc_cv'
 };
 
 async function load(lang) {
@@ -23,7 +23,8 @@ function apply() {
     });
 
     document.querySelectorAll('.doc-btn[data-doc-id]').forEach(btn => {
-        const key = DOC_NAMES[btn.dataset.docId];
+        const name = btn.dataset.docName;
+        const key = DOC_NAMES[name];
         if (key && translations[key]) {
             btn.innerHTML = `${translations[key]} <span class="doc-btn-arrow">\u2192</span>`;
         }
@@ -41,8 +42,8 @@ function getLang() {
     return currentLang;
 }
 
-function getDocName(docId, fallback) {
-    const key = DOC_NAMES[docId];
+function getDocName(name, fallback) {
+    const key = DOC_NAMES[name];
     return key && translations[key] ? translations[key] : fallback;
 }
 

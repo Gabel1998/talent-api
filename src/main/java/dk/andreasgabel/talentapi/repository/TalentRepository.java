@@ -7,12 +7,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class TalentRepository {
 
-    private static final String ANDREAS_ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
-    private static final String NIMA_ID = "b2c3d4e5-f6a7-8901-bcde-f12345678901";
+    private static final String ANDREAS_ID = UUID.randomUUID().toString();
+    private static final String NIMA_ID = UUID.randomUUID().toString();
 
     private final List<Talent> talents = List.of(
             Talent.builder()
@@ -38,19 +39,21 @@ public class TalentRepository {
             Talent.builder()
                     .id(NIMA_ID)
                     .name("Nima Salami")
-                    .title("Datamatiker-studerende | DevOps & infrastruktur")
+                    .title("Fra drift til DevOps | Datamatikerstuderende på 4. semester")
                     .profileText(
-                        "4. semester datamatiker på KEA med specialisering i DevOps, infrastruktur og automatisering.\n" +
-                        "Drifter egne produktionskørende servere i fritiden " +
-                        "– ikke fordi det er et krav, men fordi jeg vil forstå systemerne i dybden.\n\n" +
-                        "Baggrund i ledelse og drift, hvor ansvar og overblik var en forudsætning.\n" +
-                        "Jeg venter ikke på at få en opgave tildelt – jeg finder ud af hvad der skal løses.")
+                        "Fra køkken til kommunal drift til infrastruktur.\n" +
+                        "Fælles for det hele er at jeg altid har forstået hvordan arbejde faktisk udføres, " +
+                        "hvor friktionen er og hvordan den opstår.\n" +
+                        "Det er den sans der naturligt har ført mig mod DevOps.\n\n" +
+                        "Jeg drifter egne produktionskørende servere i fritiden " +
+                        "og drives af en nysgerrighed der ikke stopper ved at få noget til at virke.\n" +
+                        "Jeg vil forstå hvorfor det virker, og hvad der sker når det ikke gør.")
                     .email("nima@nimasalami.dk")
                     .phone("+45 22 98 50 77")
                     .city("København NV")
                     .country("Danmark")
                     .github("https://github.com/hajisan")
-                    .linkedin("https://www.linkedin.com/in/nima-salami-41197744/")
+                    .linkedin("https://www.linkedin.com/in/hello-nima/")
                     .build()
     );
 
@@ -58,7 +61,7 @@ public class TalentRepository {
             ANDREAS_ID, List.of(
 
                     Document.builder()
-                            .id("d0c00001-0000-0000-0000-000000000001")
+                            .id(UUID.randomUUID().toString())
                             .name("Motivationsbrev")
                             .content(
                                 "Jeg vil bygge rigtige systemer, ikke kun beskrivelser.\n\n" +
@@ -78,7 +81,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("d0c00002-0000-0000-0000-000000000002")
+                            .id(UUID.randomUUID().toString())
                             .name("CV")
                             .content(
                                 "UDDANNELSE:\nDatamatiker, Erhvervsakademi København (EK), 2024–2027.\n\n" +
@@ -101,7 +104,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("d0c00003-0000-0000-0000-000000000003")
+                            .id(UUID.randomUUID().toString())
                             .name("Projekt: Portfolio-platform")
                             .content(
                                 "LINK: https://andreasgabel.dk\n" +
@@ -121,7 +124,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("d0c00004-0000-0000-0000-000000000004")
+                            .id(UUID.randomUUID().toString())
                             .name("Projekt: Raid Fines")
                             .content(
                                 "LINK: https://andreasgabel.dk/raidfines\n" +
@@ -136,7 +139,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("d0c00005-0000-0000-0000-000000000005")
+                            .id(UUID.randomUUID().toString())
                             .name("Projekt: Web Crawler")
                             .content(
                                 "LINK: https://andreasgabel.dk/webcrawler\n" +
@@ -151,7 +154,7 @@ public class TalentRepository {
                             .build(),
 
                     Document.builder()
-                            .id("d0c00006-0000-0000-0000-000000000006")
+                            .id(UUID.randomUUID().toString())
                             .name("Projekt: Beskyttelsesrum Danmark")
                             .content(
                                 "LINK: https://andreasgabel.dk/beskyttelsesrum\n" +

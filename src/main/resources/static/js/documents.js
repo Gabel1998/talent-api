@@ -1,7 +1,7 @@
 import * as I18n from './i18n.js';
 import * as Modal from './modal.js';
 
-const DOC_IDS = ['d0c00001-0000-0000-0000-000000000001', 'd0c00002-0000-0000-0000-000000000002'];
+const SHOW_DOCS = ['Motivationsbrev', 'CV'];
 
 let talentId = null;
 
@@ -22,11 +22,12 @@ async function render() {
     const list = document.getElementById('doc-list');
     list.innerHTML = '';
 
-    docs.filter(d => DOC_IDS.includes(d.id)).forEach(doc => {
-        const name = I18n.getDocName(doc.id, doc.name);
+    docs.filter(d => SHOW_DOCS.includes(d.name)).forEach(doc => {
+        const name = I18n.getDocName(doc.name, doc.name);
         const btn = document.createElement('button');
         btn.className = 'doc-btn';
         btn.dataset.docId = doc.id;
+        btn.dataset.docName = doc.name;
         btn.innerHTML = `${name} <span class="doc-btn-arrow">\u2192</span>`;
         btn.addEventListener('click', () => openDocument(doc.id));
         list.appendChild(btn);
