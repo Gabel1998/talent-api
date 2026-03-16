@@ -13,19 +13,28 @@ function open(heading, loadingText) {
 }
 
 function setContent(text) {
+    body.style.whiteSpace = 'pre-wrap';
     body.textContent = text;
+}
+
+function urlBar(url) {
+    return `<div class="modal-url"><a href="${url}" target="_blank" rel="noopener"><code>${url}</code></a></div>`;
 }
 
 function setJsonContent(url, data) {
     const json = JSON.stringify(data, null, 2);
-    body.innerHTML = `<div class="modal-url"><code>${url}</code></div><pre class="modal-json">${escapeHtml(json)}</pre>`;
+    body.innerHTML = `${urlBar(url)}<pre class="modal-json">${formatJson(json)}</pre>`;
 }
 
 function setMultiJsonContent(results) {
     body.innerHTML = results.map(r => {
         const json = JSON.stringify(r.data, null, 2);
-        return `<div class="modal-url"><code>${r.url}</code></div><pre class="modal-json">${escapeHtml(json)}</pre>`;
+        return `${urlBar(r.url)}<pre class="modal-json">${formatJson(json)}</pre>`;
     }).join('<div class="modal-divider"></div>');
+}
+
+function formatJson(str) {
+    return escapeHtml(str).replace(/\\n/g, '\n');
 }
 
 function escapeHtml(str) {

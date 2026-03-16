@@ -77,6 +77,15 @@
     border: 1px solid var(--color-border);
 }
 
+.modal-url a {
+    text-decoration: none;
+    display: block;
+}
+
+.modal-url a:hover code {
+    text-decoration: underline;
+}
+
 .modal-url code {
     font-family: var(--font-mono);
     font-size: 0.8rem;
