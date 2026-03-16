@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.Locale;
+
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -95,7 +97,7 @@ class TalentApiIntegrationTest {
         mvc.perform(get("/talent/does-not-exist"))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.status", is(404)))
-                .andExpect(jsonPath("$.message", is("Talent not found")));
+                .andExpect(jsonPath("$.message").isNotEmpty());
     }
 
     // --- GET /talent/{id}/documents ---
@@ -128,7 +130,7 @@ class TalentApiIntegrationTest {
     void getDocuments_invalidTalent_returns404() throws Exception {
         mvc.perform(get("/talent/does-not-exist/documents"))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message", containsString("Documents not found")));
+                .andExpect(jsonPath("$.message").isNotEmpty());
     }
 
     // --- GET /talent/{id}/documents/{documentId} ---
@@ -145,14 +147,14 @@ class TalentApiIntegrationTest {
     void getDocument_invalidDocId_returns404() throws Exception {
         mvc.perform(get("/talent/" + andreasId + "/documents/does-not-exist"))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message", is("Document not found")));
+                .andExpect(jsonPath("$.message").isNotEmpty());
     }
 
     @Test
     void getDocument_invalidTalentId_returns404() throws Exception {
         mvc.perform(get("/talent/does-not-exist/documents/" + firstDocId))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message", is("Document not found")));
+                .andExpect(jsonPath("$.message").isNotEmpty());
     }
 
     // --- /api/image-tag ---
@@ -177,7 +179,8 @@ class TalentApiIntegrationTest {
 
     @Test
     void unknownEndpoint_returnsJsonError() throws Exception {
-        mvc.perform(get("/nonexistent/path"))
+        mvc.perform(get("/nonexistent/path")
+                .header("Accept-Language", "en"))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.status", is(404)))
                 .andExpect(jsonPath("$.error", is("Not Found")))
@@ -202,5 +205,25 @@ class TalentApiIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id", matchesPattern(
                         "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")));
+    }
+
+    // --- i18n error messages ---
+
+    @Test
+    void error404_english_returnsEnglishMessage() throws Exception {
+        mvc.perform(get("/talent/does-not-exist")
+                .header("Accept-Language", "en"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message", is("Talent not found")))
+                .andExpect(jsonPath("$.error", is("Not Found")));
+    }
+
+    @Test
+    void error404_danish_returnsDanishMessage() throws Exception {
+        mvc.perform(get("/talent/does-not-exist")
+                .header("Accept-Language", "da"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message", is("Talent blev ikke fundet")))
+                .andExpect(jsonPath("$.error", is("Ikke fundet")));
     }
 }

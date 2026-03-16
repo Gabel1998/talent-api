@@ -64,7 +64,7 @@ public class TalentController {
             @PathVariable String id) {
         return ResponseEntity.ok(
                 talentService.getTalentById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Talent not found")));
+                        .orElseThrow(() -> new ResourceNotFoundException("talent.not_found")));
     }
 
     @GetMapping("/{id}/documents")
@@ -89,7 +89,7 @@ public class TalentController {
             @PathVariable String id) {
         return ResponseEntity.ok(
                 talentService.getDocumentsForTalent(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Documents not found — talent does not exist")));
+                        .orElseThrow(() -> new ResourceNotFoundException("documents.not_found")));
     }
 
     @GetMapping("/{id}/documents/{documentId}")
@@ -116,6 +116,6 @@ public class TalentController {
             @PathVariable String documentId) {
         return ResponseEntity.ok(
                 talentService.getDocument(id, documentId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Document not found")));
+                        .orElseThrow(() -> new ResourceNotFoundException("document.not_found")));
     }
 }
