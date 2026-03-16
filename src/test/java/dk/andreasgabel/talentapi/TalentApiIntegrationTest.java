@@ -93,7 +93,9 @@ class TalentApiIntegrationTest {
     @Test
     void getTalentById_invalidId_returns404() throws Exception {
         mvc.perform(get("/talent/does-not-exist"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status", is(404)))
+                .andExpect(jsonPath("$.message", is("Talent not found")));
     }
 
     // --- GET /talent/{id}/documents ---
@@ -125,7 +127,8 @@ class TalentApiIntegrationTest {
     @Test
     void getDocuments_invalidTalent_returns404() throws Exception {
         mvc.perform(get("/talent/does-not-exist/documents"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message", containsString("Documents not found")));
     }
 
     // --- GET /talent/{id}/documents/{documentId} ---
@@ -141,13 +144,15 @@ class TalentApiIntegrationTest {
     @Test
     void getDocument_invalidDocId_returns404() throws Exception {
         mvc.perform(get("/talent/" + andreasId + "/documents/does-not-exist"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message", is("Document not found")));
     }
 
     @Test
     void getDocument_invalidTalentId_returns404() throws Exception {
         mvc.perform(get("/talent/does-not-exist/documents/" + firstDocId))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message", is("Document not found")));
     }
 
     // --- /api/image-tag ---

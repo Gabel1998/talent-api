@@ -1,5 +1,6 @@
 package dk.andreasgabel.talentapi.controller;
 
+import dk.andreasgabel.talentapi.exception.ResourceNotFoundException;
 import dk.andreasgabel.talentapi.model.Document;
 import dk.andreasgabel.talentapi.model.Talent;
 import dk.andreasgabel.talentapi.service.TalentService;
@@ -29,12 +30,12 @@ public class TalentController {
 
     @GetMapping
     @Operation(
-        summary = "Hent alle talents",
-        description = "Returnerer en liste over alle registrerede talent-profiler med kontaktinfo og links."
+        summary = "Get a list of talents",
+        description = "Returns a list of all registered talent profiles with contact info and links."
     )
     @ApiResponse(
         responseCode = "200",
-        description = "Liste af talents",
+        description = "A list of talents",
         content = @Content(array = @ArraySchema(schema = @Schema(implementation = Talent.class)))
     )
     public ResponseEntity<List<Talent>> getAllTalents() {
@@ -43,68 +44,68 @@ public class TalentController {
 
     @GetMapping("/{id}")
     @Operation(
-        summary = "Hent en specifik talent",
-        description = "Returnerer en enkelt talent-profil ud fra det angivne ID (UUID)."
+        summary = "Get a specific talent",
+        description = "Returns a single talent profile by the given ID (UUID)."
     )
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
-            description = "Talent fundet",
+            description = "A specific talent",
             content = @Content(schema = @Schema(implementation = Talent.class))
         ),
         @ApiResponse(
             responseCode = "404",
-            description = "Talent ikke fundet — ugyldigt eller ukendt ID",
+            description = "Talent not found",
             content = @Content
         )
     })
     public ResponseEntity<Talent> getTalentById(
             @Parameter(description = "Talent ID (UUID)", example = "550e8400-e29b-41d4-a716-446655440000")
             @PathVariable String id) {
-        return talentService.getTalentById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(
+                talentService.getTalentById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Talent not found")));
     }
 
     @GetMapping("/{id}/documents")
     @Operation(
-        summary = "Hent dokumenter for en talent",
-        description = "Returnerer alle dokumenter (CV, motivationsbrev, projektbeskrivelser) der tilhører den angivne talent."
+        summary = "Get documents for a specific talent",
+        description = "Returns all documents (CV, cover letter, project descriptions) belonging to the given talent."
     )
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
-            description = "Liste af dokumenter",
+            description = "A list of documents",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = Document.class)))
         ),
         @ApiResponse(
             responseCode = "404",
-            description = "Talent ikke fundet",
+            description = "Documents not found — talent does not exist",
             content = @Content
         )
     })
     public ResponseEntity<List<Document>> getDocuments(
             @Parameter(description = "Talent ID (UUID)", example = "550e8400-e29b-41d4-a716-446655440000")
             @PathVariable String id) {
-        return talentService.getDocumentsForTalent(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(
+                talentService.getDocumentsForTalent(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Documents not found — talent does not exist")));
     }
 
     @GetMapping("/{id}/documents/{documentId}")
     @Operation(
-        summary = "Hent et specifikt dokument",
-        description = "Returnerer et enkelt dokument for en talent, f.eks. CV eller motivationsbrev."
+        summary = "Get a specific document for a talent",
+        description = "Returns a single document for a talent, e.g. CV or cover letter."
     )
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
-            description = "Dokument fundet",
+            description = "A specific document",
             content = @Content(schema = @Schema(implementation = Document.class))
         ),
         @ApiResponse(
             responseCode = "404",
-            description = "Talent eller dokument ikke fundet",
+            description = "Document not found",
             content = @Content
         )
     })
@@ -113,8 +114,8 @@ public class TalentController {
             @PathVariable String id,
             @Parameter(description = "Document ID (UUID)", example = "d001")
             @PathVariable String documentId) {
-        return talentService.getDocument(id, documentId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(
+                talentService.getDocument(id, documentId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Document not found")));
     }
 }
